@@ -11,8 +11,9 @@ mongoose.connect(
       useNewUrlParser: true 
     }
 );
+require('./src/models/Product');
 
-//Primeira rota
+//Primeira Rota
 app.get('/', (req, res) => {
     res.send('Hello World Daiane')
 });
