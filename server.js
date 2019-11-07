@@ -14,17 +14,7 @@ mongoose.connect(
 );
 requireDir('./src/models');
 
-const Product = mongoose.model('Product');
-
-//Primeira Rota
-app.get('/', (req, res) => {
-  Product.create({
-    title: 'Node.js',
-    description: 'Build api with Node.js',
-    url: "https://github.com/DaianeBarizon/node-api"
-  });
-
-  return res.send('Hello World Daiane');
-});
+//Recebe todos os tipos de requisição
+app.use('/api', require('./src/routes'));
 
 app.listen(3001);
