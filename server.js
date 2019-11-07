@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const requireDir = require('require-dir');
 
 //Inciando App
 const app = express();
@@ -11,10 +12,19 @@ mongoose.connect(
       useNewUrlParser: true 
     }
 );
-require('./src/models/Product');
+requireDir('./src/models');
+
+const Product = mongoose.model('Product');
 
 //Primeira Rota
 app.get('/', (req, res) => {
-    res.send('Hello World Daiane')
+  Product.create({
+    title: 'Node.js',
+    description: 'Build api with Node.js',
+    url: "https://github.com/DaianeBarizon/node-api"
+  });
+
+  return res.send('Hello World Daiane');
 });
+
 app.listen(3001);
